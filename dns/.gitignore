@@ -1,0 +1,63 @@
+# =========================
+# Composer
+# =========================
+/vendor/
+composer.phar
+
+# =========================
+# Environment & secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# PHP runtime / cache
+# =========================
+*.log
+*.cache
+*.pid
+*.tmp
+
+# PHPStan / Psalm / PHP-CS-Fixer
+.phpunit.result.cache
+.phpstan.neon
+.psalm.xml
+.psalm.cache/
+
+# =========================
+# PHPUnit
+# =========================
+/coverage/
+.phpunit.cache/
+
+# =========================
+# IDEs / Editors
+# =========================
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =========================
+# OS junk
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Build / artifacts
+# =========================
+/dist/
+/build/
+
+# =========================
+# Local tooling
+# =========================
+.php-cs-fixer.cache
+
+# =========================
+# Local Config
+# =========================
+cloudflare.json
+
