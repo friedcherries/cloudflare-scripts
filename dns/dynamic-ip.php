@@ -94,16 +94,18 @@ foreach ($zones['result'] as $zone) {
         $dnsRecords = getDnsRecords($zone['id'], $token);
         foreach ($dnsRecords['result'] as $record) {
             if (in_array($record['name'], $zoneList) && $record['type'] == 'A') {
+                $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
                 $ip = $record['content'];
                 if ($ip != $hostIp) {
+                    ; // ISO 8601
                     $result = updateDnsRecordIp($zone['id'], $record['id'], $token, $hostIp);
                     if (!$result) {
-                        echo "Unknown error occurred.\n";
+                        echo $now->format('c'), " Unknown error occurred.\n";
                     } else {
-                        echo "IP UPDATE: {$record['name']} IP updated from {$ip} to {$hostIp}.\n";
+                        echo $now->format('c'), " IP UPDATE: {$record['name']} IP updated from {$ip} to {$hostIp}.\n";
                     }
                 } else {
-                    echo "IP MATCH: {$record['name']} IP of {$ip} matches {$hostIp}.\n";
+                    echo $now->format('c'), " IP MATCH: {$record['name']} IP of {$ip} matches {$hostIp}.\n";
                 }
             }
         }
