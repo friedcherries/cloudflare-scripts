@@ -89,9 +89,14 @@ $token = $data['token'];
 $zones = getZones($token);
 $hostIp = getHostIp();
 
+$now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
+echo "--\n";
+echo $now->format('c'), " DNS: START\n";
+
 foreach ($zones['result'] as $zone) {
     if (in_array($zone['name'], $zoneList)) {
         $dnsRecords = getDnsRecords($zone['id'], $token);
+
         foreach ($dnsRecords['result'] as $record) {
             if (in_array($record['name'], $zoneList) && $record['type'] == 'A') {
                 $now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
@@ -111,3 +116,8 @@ foreach ($zones['result'] as $zone) {
         }
     }
 }
+
+$now = new DateTimeImmutable('now', new DateTimeZone('UTC'));
+echo $now->format('c'), " DNS: END\n";
+echo "--\n";
+
